@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Florek - Personal Webpage</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #121212;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+
+        nav .left, nav .right {
+            display: flex;
+            align-items: center;
+            align-content: center;
+            z-index: 1000; /* Ensures it stays on top of other elements */
+            color: white; /* Change color for better visibility */
+            background-color: black; /* Adds contrast if needed */
+            position: relative; /* To reposition if necessary */
+            top: 5px; /* Adjust vertical position */
+            left: 5px; /* Adjust horizontal position */
+        }
+
+        nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff00ff;
+        }
+
+        nav .right a {
+            margin: 0 10px;
+        }
+
+        nav img {
+            width: 35px;
+            height: 35px;
+            margin: 0 10px;
+        }
+
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 100px 20px 50px;
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        header {
+            text-align: center;
+            padding: 100px 20px 50px;
+            background: linear-gradient(135deg, #ff00ff, #0f0fff);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.2em;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        .home-img {
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: url('https://via.placeholder.com/200') no-repeat center center;
+            background-size: cover;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .animated-text {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 4s steps(250, end), blink 0.75s step-end infinite;
+            font-size: 2em;
+            margin-top: 20px;
+        }
+
+        .icon-github {
+            z-index: 1000; /* Ensures it stays on top of other elements */
+            color: white; /* Change color for better visibility */
+            background-color: black; /* Adds contrast if needed */
+            position: relative; /* To reposition if necessary */
+            top: 5px; /* Adjust vertical position */
+            left: 5px; /* Adjust horizontal position */
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #FFFFFF;
+            }
+        }
+
+        .projects, .about, .contact {
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .project-item {
+            background-color: #1e1e1e;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+            animation: slideIn 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .project-item img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .project-item:hover {
+            transform: scale(1.05);
+            background-color: #333333;
+        }
+
+        .project-item a {
+            color: #ff00ff;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #000000;
+            border: 2px solid #ff00ff;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .project-item a:hover {
+            background-color: #ff00ff;
+            color: #000000;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .bio {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .bio .box {
+            background-color: #1e1e1e;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+            cursor: pointer;
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bio .box:hover {
+            transform: scale(1.1);
+            background-color: #333333;
+        }
+
+        .bio .box span {
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .bio .box p {
+            margin: 0;
+            text-align: center;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .skills .skill {
+            background-color: #1e1e1e;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+            cursor: pointer;
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .skills .skill:hover {
+            transform: scale(1.1);
+            background-color: #333333;
+        }
+
+        .skills .skill span {
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .skills .skill p {
+            margin: 0;
+            text-align: center;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact form input, .contact form textarea {
+            width: 100%;
+            max-width: 500px;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact form input:focus, .contact form textarea:focus {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #ff00ff;
+        }
+
+        .contact form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff00ff;
+            color: #121212;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .contact form button:hover {
+            background-color: #ff00ff;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+            animation: slideUp 1s ease-out;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1em;
+            color: #FFFFFF;
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(100%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info div {
+            background-color: #1e1e1e;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            width: 45%;
+            transition: transform 0.3s, background-color 0.3s;
+            animation: fadeIn 2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-info div:hover {
+            transform: scale(1.05);
+            background-color: #333333;
+        }
+
+        .contact-info div span {
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+            }
+
+            .project-item {
+                flex-direction: column;
+            }
+
+            .project-item img {
+                margin-bottom: 10px;
+            }
+
+            .bio .box, .skills .skill, .contact-info div {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="left">
+        <a href="#home" onclick="showSection('home')">Home</a>
+        <a href="#projects" onclick="showSection('projects')">Projects</a>
+        <a href="#about" onclick="showSection('about')">About Me</a>
+        <a href="#contact" onclick="showSection('contact')">Contact</a>
+    </div>
+    <div class="right">
+        <a href="https://github.com/yourgithub" target="_blank"><img src="file:///C:/Users/szyme/Downloads/iconmonstr-github-1.svg" alt="GitHub"></a>
+        <a href="https://linkedin.com/in/yourlinkedin" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Linkedin_icon.svg" alt="LinkedIn"></a>
+    </div>
+</nav>
+<div id="home" class="section active">
+    <header>
+        <h1>Simon Florek</h1>
+        <div class="home-img"></div>
+        <p class="animated-text">Hello, welcome to my portfolio page!</p>
+    </header>
+</div>
+<div id="projects" class="section">
+    <section class="projects">
+        <h2>Projects</h2>
+        <div class="project-item">
+            <img src="https://via.placeholder.com/100" alt="Project Preview">
+            <div>
+                <h3>Project 1</h3>
+                <p>Description of Project 1. This project involves using HTML, CSS, and JavaScript to create a dynamic and interactive web application. The application features real-time data updates, user authentication, and responsive design.</p>
+                <a href="https://github.com/yourgithub/project1" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <img src="https://via.placeholder.com/100" alt="Project Preview">
+            <div>
+                <h3>Project 2</h3>
+                <p>Description of Project 2. This project focuses on building a machine learning model using Python and TensorFlow. The model is designed to predict future trends based on historical data, and the results are visualized using interactive charts and graphs.</p>
+                <a href="https://github.com/yourgithub/project2" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <img src="https://via.placeholder.com/100" alt="Project Preview">
+            <div>
+                <h3>Project 3</h3>
+                <p>Description of Project 3. This project is a mobile application developed using React Native. The app provides a platform for users to share and discover new recipes, with features such as ingredient search, recipe ratings, and user comments.</p>
+                <a href="https://github.com/yourgithub/project3" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <img src="https://via.placeholder.com/100" alt="Project Preview">
+            <div>
+                <h3>Project 4</h3>
+                <p>Description of Project 4. This project is a full-stack web application built with Node.js and MongoDB. The application allows users to create and manage tasks, set deadlines, and collaborate with team members in real-time.</p>
+                <a href="https://github.com/yourgithub/project4" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <img src="https://via.placeholder.com/100" alt="Project Preview">
+            <div>
+                <h3>Project 5</h3>
+                <p>Description of Project 5. This project is a data visualization tool created with D3.js. The tool enables users to explore complex datasets through interactive visualizations, including bar charts, line graphs, and scatter plots.</p>
+                <a href="https://github.com/yourgithub/project5" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+</div>
+<div id="about" class="section">
+    <section class="about">
+        <h2>About Me</h2>
+        <div class="bio">
+            <div class="box">
+                <span>Education</span>
+                <p>Second-year student of Cybernetics and Computer Science at WAT (Military University of Technology).</p>
+            </div>
+            <div class="box">
+                <span>Experience</span>
+                <p>Looking for an internship opportunity in Machine Learning.</p>
+            </div>
+            <div class="box">
+                <span>Languages and Technologies</span>
+                <p>C++, C, Python, Java, React, HTML, CSS, SQL (Oracle), Linux</p>
+            </div>
+        </div>
+        <h3>Hobbies and Interests</h3>
+        <div class="skills">
+            <div class="skill">
+                <span>Machine Learning</span>
+                <p>Passionate about developing and applying machine learning models to solve real-world problems. Enjoy experimenting with new algorithms and frameworks.</p>
+            </div>
+            <div class="skill">
+                <span>Reading</span>
+                <p>Avid reader of tech blogs and research papers in the field of artificial intelligence and machine learning. Stay updated with the latest advancements and breakthroughs.</p>
+            </div>
+            <div class="skill">
+                <span>Gaming</span>
+                <p>Enjoy playing strategy and puzzle games, which help improve problem-solving skills and strategic thinking.</p>
+            </div>
+            <div class="skill">
+                <span>Hiking</span>
+                <p>Love exploring nature and going on hiking trips. Believe in maintaining a balance between physical and mental well-being.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="contact" class="section">
+    <section class="contact">
+        <h2>Contact Me</h2>
+        <form action="https://formspree.io/f/mrgndayy" method="POST">
+            <label>
+                Your email:
+                <input type="email" name="email" placeholder="Your Email" required>
+            </label>
+            <label>
+                Your message:
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            </label>
+            <button type="submit">Send</button>
+        </form>
+        <div class="contact-info">
+            <div>
+                <span>Email</span>
+                <p>simon.florek@example.com</p>
+            </div>
+            <div>
+                <span>Phone</span>
+                <p>+123 456 7890</p>
+            </div>
+        </div>
+    </section>
+</div>
+<footer>
+    <p>&copy; 2024 Simon Florek. All rights reserved.</p>
+</footer>
+<script>
+    function showSection(id) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => section.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+</script>
+</body>
+</html>
